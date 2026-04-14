@@ -16,13 +16,13 @@ def load_vocab(file):
 # msg_len → message length range
 
 users = [
-    {"name": "Aarav", "freq": 0.25, "hours": range(0, 24), "msg_len": (3, 8)},   # Chatterbox
-    {"name": "Diya", "freq": 0.10, "hours": range(0, 4), "msg_len": (2, 5)},    # Night Owl
-    {"name": "Kabir", "freq": 0.15, "hours": range(8, 18), "msg_len": (6, 12)}, # Long texter
-    {"name": "Meera", "freq": 0.10, "hours": range(10, 22), "msg_len": (1, 3)}, # Short replies
-    {"name": "Rohan", "freq": 0.15, "hours": range(0, 24), "msg_len": (2, 6)},  # Normal
-    {"name": "Anaya", "freq": 0.15, "hours": range(12, 20), "msg_len": (4, 9)}, # Afternoon active
-    {"name": "Vihaan", "freq": 0.10, "hours": range(0, 24), "msg_len": (1, 2)}, # Dry texter
+    {"name": "Shreya", "freq": 0.25, "hours": range(0, 24), "msg_len": (3, 8)},   # Chatterbox
+    {"name": "Rishabh", "freq": 0.10, "hours": range(0, 4), "msg_len": (2, 5)},    # Night Owl
+    {"name": "Rajit", "freq": 0.15, "hours": range(8, 18), "msg_len": (6, 12)}, # Long texter
+    {"name": "Arush", "freq": 0.10, "hours": range(10, 22), "msg_len": (1, 3)}, # Short replies
+    {"name": "Sudhansh", "freq": 0.15, "hours": range(0, 24), "msg_len": (2, 6)},  # Normal
+    {"name": "Praveen", "freq": 0.15, "hours": range(12, 20), "msg_len": (4, 9)}, # Afternoon active
+    {"name": "Vishal", "freq": 0.10, "hours": range(0, 24), "msg_len": (1, 2)}, # Dry texter
 ]
 
 # ----------- GENERATE MESSAGE -----------
