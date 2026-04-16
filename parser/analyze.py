@@ -72,7 +72,7 @@ print("Total_words",total_words)
 
 # Night owl - most messages between 12 and 4 am
 
-
+nightowl_count = {}
 for m in messages:
     if m["datetime"].hour < 4:
         sender = m["sender"]
