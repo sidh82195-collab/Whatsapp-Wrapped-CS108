@@ -1,4 +1,4 @@
-__pycache__/
+__pycache
 *.pyc
 node_modules/
 .DS_Store
