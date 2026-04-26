@@ -1,0 +1,513 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --green: #25D366;
+  --green-dim: #128C7E;
+  --bg: #0a0a0a;
+  --card: #111111;
+  --card2: #1a1a1a;
+  --text: #f0f0f0;
+  --muted: #777;
+  --accent: #FFD60A;
+  --accent2: #ff6b6b;
+  --accent3: #74b9ff;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+}
+
+/* ─── progress bar ─── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: var(--green);
+  transition: width 0.4s ease;
+  z-index: 100;
+}
+
+/* ─── nav buttons ─── */
+.nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.4rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.nav-btn:hover { background: rgba(37,211,102,0.2); border-color: var(--green); }
+.nav-btn.left  { left: 16px; }
+.nav-btn.right { right: 16px; }
+
+/* ─── slide counter ─── */
+.slide-counter {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  z-index: 99;
+}
+
+/* ─── slides wrapper ─── */
+.slides-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+/* ─── individual slide ─── */
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 80px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(20px);
+  overflow: hidden;
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+/* ─── INTRO slide ─── */
+.slide-intro {
+  background: radial-gradient(ellipse at 60% 40%, #1a3a2a 0%, #0a0a0a 70%);
+  text-align: center;
+}
+.slide-intro .big-logo {
+  font-size: 5rem;
+  margin-bottom: 12px;
+}
+.slide-intro h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.slide-intro h1 span {
+  color: var(--green);
+}
+.slide-intro .year-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.slide-intro .subtitle {
+  margin-top: 28px;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+.slide-intro .click-hint {
+  margin-top: 48px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--green-dim);
+  letter-spacing: 0.12em;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ─── STAT slide (full-screen big number) ─── */
+.slide-stat {
+  background: var(--bg);
+  text-align: center;
+}
+.slide-stat .stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--green);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.slide-stat .stat-big {
+  font-size: clamp(4rem, 14vw, 10rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+.slide-stat .stat-big.accent { color: var(--accent); }
+.slide-stat .stat-big.green  { color: var(--green); }
+.slide-stat .stat-desc {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 540px;
+}
+.slide-stat .stat-sub {
+  margin-top: 10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ─── CHART slide ─── */
+.slide-chart {
+  background: var(--bg);
+  gap: 28px;
+}
+.slide-chart h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+.slide-chart h2 .hl { color: var(--green); }
+.chart-box {
+  width: 100%;
+  max-width: 700px;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #222;
+}
+
+/* ─── AWARD slide ─── */
+.slide-award {
+  text-align: center;
+}
+.award-emoji {
+  font-size: 5rem;
+  margin-bottom: 12px;
+  animation: pop 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes pop {
+  from { transform: scale(0.3); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+.award-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--green);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.award-name {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.award-desc {
+  margin-top: 16px;
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.award-stat {
+  margin-top: 24px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+/* ─── PROFILE slide ─── */
+.slide-profile {
+  background: var(--bg);
+  gap: 0;
+}
+.profile-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  border: 3px solid var(--green);
+}
+.profile-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.profile-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--green);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.profile-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+.stat-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px 18px;
+  border: 1px solid #222;
+}
+.stat-card .sc-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.stat-card .sc-val {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.stat-card .sc-val.green  { color: var(--green); }
+.stat-card .sc-val.yellow { color: var(--accent); }
+.stat-card .sc-val.red    { color: var(--accent2); }
+.stat-card .sc-val.blue   { color: var(--accent3); }
+.emoji-row {
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+}
+.chart-mini {
+  width: 100%;
+  height: 90px;
+}
+
+/* profile selector */
+.profile-selector-slide {
+  text-align: center;
+  gap: 28px;
+}
+.profile-selector-slide h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+.profile-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  max-width: 700px;
+}
+.profile-btn {
+  padding: 12px 28px;
+  border-radius: 100px;
+  background: var(--card);
+  border: 1px solid #333;
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.profile-btn:hover, .profile-btn.active {
+  background: var(--green);
+  color: #000;
+  border-color: var(--green);
+}
+
+/* ─── OUTRO slide ─── */
+.slide-outro {
+  background: radial-gradient(ellipse at 40% 60%, #1a2a1a 0%, #0a0a0a 70%);
+  text-align: center;
+}
+.slide-outro h2 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.slide-outro .green { color: var(--green); }
+.slide-outro p {
+  margin-top: 16px;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+.slide-outro .mono {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  margin-top: 32px;
+  color: #444;
+}
+
+/* ─── decorative blobs ─── */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.18;
+  z-index: 0;
+}
+.slide > *:not(.blob) { position: relative; z-index: 1; }
+
+/* backgrounds per slide type */
+.slide-award { background: radial-gradient(ellipse at 50% 50%, #1a2510 0%, #0a0a0a 70%); }
+
+/* ranking table */
+.rank-table {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rank-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+  border-radius: 10px;
+  padding: 10px 16px;
+  border: 1px solid #1e1e1e;
+}
+.rank-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+  width: 22px;
+  text-align: right;
+}
+.rank-name {
+  flex: 1;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.rank-bar-wrap {
+  flex: 2;
+  height: 6px;
+  background: #222;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.rank-bar {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--green);
+  transition: width 1s ease;
+}
+.rank-val {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  width: 40px;
+  text-align: right;
+}
+
+/* silence slide */
+.silence-box {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 32px 40px;
+  border: 1px solid #222;
+  text-align: center;
+}
+.silence-hours {
+  font-size: 5rem;
+  font-weight: 800;
+  color: var(--accent2);
+  letter-spacing: -0.04em;
+}
+.silence-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 4px;
+}
+.silence-range {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* emoji slide */
+.emoji-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 620px;
+}
+.emoji-row-full {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+  border-radius: 10px;
+  padding: 10px 18px;
+}
+.emoji-name { flex: 1; font-weight: 600; }
+.emoji-icons { font-size: 1.6rem; letter-spacing: 6px; }
+.emoji-empty { color: var(--muted); font-size: 0.85rem; font-style: italic; }
+
+/* response time slide */
+.response-list {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.resp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+.resp-name { flex: 1; font-weight: 600; }
+.resp-val {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
