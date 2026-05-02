@@ -1,5 +1,4 @@
-// app.js — WhatsApp Wrapped 2024
-// reads data.json, builds slides, handles navigation
+
 
 let currentSlide = 0;
 let slides = [];
